@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <title>Khách hàng</title>
+</head>
+<div class="signup-form col-sm-5 col-sm-offset-1" style="min-height:700px">
+    <h2>Thông tin cá nhân</h2>
+    <form action="#">
+        <h5>Tên đăng nhập</h5>
+
+        <input type="text" value="admin" readonly />
+        <h5>Mật khẩu</h5>
+        <input type="password" value="admin" readonly />
+        <h5>Email</h5>
+        <input type="email" value="admin@gmail.com" readonly />
+        <h5>Số điện thoại</h5>
+        <input type="text" value="12333" readonly />
+        <h5>Họ tên</h5>
+        <input type="text" value="admin" readonly />
+        <h5>Ngày sinh</h5>
+        <input type="datetime" value="12/12/2021" readonly />
+        <div style="display: flex; justify-content: space-between">
+            <button class="btn btn-default">
+                <a href="@Url.Action("EditUser","Home")" style="color: #000">Sửa thông tin</a>
+            </button>
+            <button class="btn btn-default">
+                <a href="@Url.Action("ChangePassword","Home")" style="color: #000">Đổi mật khẩu</a>
+            </button>
+        </div>
+    </form>
+</div>
+
