@@ -1,0 +1,27 @@
+﻿@model Nhom3.Model.DANHMUC
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết danh mục</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENDANHMUC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENDANHMUC)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.MADANHMUC }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>

@@ -1,0 +1,432 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <title>Trang chủ</title>
+</head>
+
+<section id="slider">
+    <!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider-carousel" data-slide-to="1"></li>
+                        <li data-target="#slider-carousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div>
+                                <img src="~/wwwroot/Content/images/slide1_1.jpg" class="girl img-responsive" alt="Slide Img" />
+                               
+                            </div>
+                        </div>
+                        <div class="item">
+
+                            <div>
+                                <img src="~/wwwroot/Content/images/slide2.jpg" class="girl img-responsive" alt="Slide Img" />
+
+                            </div>
+                        </div>
+
+                        <div class="item">
+
+                            <div>
+                                <img src="~/wwwroot/Content/images/sidle3.jpg" class="girl img-responsive" alt="Slide Img" />
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section><!--/slider-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Danh Mục Sản Phẩm</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-productsr-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        Hoa cao cấp
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="sportswear" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li><a href="@Url.Action("Product","Home")">Ấm áp </a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Nhịp điệu yêu thương </a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Red Rose</a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Yêu vô bờ bến</a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Dịu dàng </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordian" href="#mens">
+                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        Hoa kỉ niệm
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="mens" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li><a href="@Url.Action("Product","Home")">Just say thank you</a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Gửi gắm yêu thương</a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Hạnh phúc bất tận</a></li>
+                                        <li><a href="@Url.Action("Product","Home")l">Sum họp</a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Ngày em đến</a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Nhớ nhung</a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Thu biếc</a></li>
+                                        <li><a href="@Url.Action("Product","Home")l">Định mệnh ta gặp nhau</a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Thời gian</a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Thông reo</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordian" href="#womens">
+                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        Hoa khai trương
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="womens" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li><a href="@Url.Action("Product","Home")">Vạn sự khởi đầu</a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Tài lộc tràn đầy</a></li>
+                                        <li><a href="@Url.Action("Product","Home")l">Ngày mai tươi sáng</a></li>
+                                        <li><a href="@Url.Action("Product","Home")l">Thần tài gõ cửa</a></li>
+                                        <li><a href="@Url.Action("Product","Home")">Tươi xanh thịnh vượng</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="@Url.Action("Product","Home")">Hoa sinh nhật</a></h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="@Url.Action("Product","Home")">Hoa tình yêu</a></h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="@Url.Action("Product","Home")">Hoa cưới</a></h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="@Url.Action("Product","Home")">Lẵng hoa</a></h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="@Url.Action("Product","Home")">Hoa sự kiện</a></h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="@Url.Action("Product","Home")">Hoa ngày lễ</a></h4>
+                            </div>
+                        </div>
+
+                    </div><!--/category-products-->
+
+                    <div class="price-range">
+                        <!--price-range-->
+                        <h2>Tìm kiếm theo giá</h2>
+                        <div class="well">
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
+                            <b>$ 0</b> <b class="pull-right">$ 600</b>
+                        </div>
+                    </div><!--/price-range-->
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Sản phẩm</h2>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="~/wwwroot/Content/images/Sinh nhật_Món quà tình yêu .jpg" alt="" style="width: 300px; height: 260px;" />
+                                    <p style="margin-top: 10px;">Món quà tình yêu</p>
+                                    <br />
+                                    <h2>Giá:560000</h2>
+                                    <br>
+                                    <p>Giá gốc: <del>700000</del></p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                </div>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <h2>560000 VND</h2>
+                                        <p>Easy Polo Black Edition</p>
+                                        <a href="@Url.Action("Details","Home")" class="btn btn-default add-to-cart">Xem sản phẩm</a>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="~/wwwroot/Content/images/Sinh nhật_Nhẹ nhàng tình mến .jpg" alt="" style="width: 300px; height: 260px;" />
+                                    <p style="margin-top: 10px;">Nhẹ nhành tình mến</p>
+                                    <br />
+                                    <h2>Giá:560000</h2>
+                                    <br>
+                                    <p>Giá gốc: <del>700000</del></p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                </div>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <h2>560000 VND</h2>
+                                        <p>Easy Polo Black Edition</p>
+                                        <a href="@Url.Action("Details","Home")" class="btn btn-default add-to-cart">Xem sản phẩm</a>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="~/wwwroot/Content/images/sk_loi chuc thanh cong.png" alt="" style="width: 300px; height: 260px;" />
+                                    <p style="margin-top: 10px;">Lời chúc thành công</p>
+                                    <br />
+                                    <h2>Giá:560000</h2>
+                                    <br>
+                                    <p>Giá gốc: <del>700000</del></p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                </div>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <h2>560000 VND</h2>
+                                        <p>Easy Polo Black Edition</p>
+                                        <a href="@Url.Action("Details","Home")" class="btn btn-default add-to-cart">Xem sản phẩm</a>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="~/wwwroot/Content/images/hc_ngay phu the.png" alt="" style="width: 300px; height: 260px;" />
+                                    <p style="margin-top: 10px;">Ngày phu thê</p>
+                                    <br />
+                                    <h2>Giá:560000</h2>
+                                    <br>
+                                    <p>Giá gốc: <del>700000</del></p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                </div>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <h2>560000 VND</h2>
+                                        <p>Easy Polo Black Edition</p>
+                                        <a href="@Url.Action("Details","Home")" class="btn btn-default add-to-cart">Xem sản phẩm</a>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="~/wwwroot/Content/images/hc_yeu khong ngung.png" alt="" style="width: 300px; height: 260px;" />
+                                    <p style="margin-top: 10px;">Yêu không ngừng</p>
+                                    <br />
+                                    <h2>Giá:560000</h2>
+                                    <br>
+                                    <p>Giá gốc: <del>700000</del></p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                </div>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <h2>560000 VND</h2>
+                                        <p>Easy Polo Black Edition</p>
+                                        <a href="@Url.Action("Details","Home")" class="btn btn-default add-to-cart">Xem sản phẩm</a>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="~/wwwroot/Content/images/Hoa khai trương_Ngày mai tươi sáng .jpg" alt="" style="width: 300px; height: 260px;" />
+                                    <p style="margin-top: 10px;">Ngày Thêm vào giỏ hàng</p>
+                                    <br />
+                                    <h2>Giá:560000</h2>
+                                    <br>
+                                    <p>Giá gốc: <del>700000</del></p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                </div>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <h2>$56</h2>
+                                        <p>Easy Polo Black Edition</p>
+                                        <a href="@Url.Action("Details","Home")" class="btn btn-default add-to-cart">Xem sản phẩm</a>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--features_items-->
+
+                <div class="recommended_items">
+                    <!--recommended_items-->
+                    <h2 class="title text-center">Gợi ý cho bạn</h2>
+
+                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/wwwroot/Content/images/Hoa khai trương_Vươn cao hạnh phúc .jpg" alt="" style="width: 250px; height: 180px;" />
+                                                <h2>1.500.000 VND</h2>
+                                                <p>Vươn cao hạnh phúc</p>
+                                                <a href="@Url.Action("Details","Home")" class="btn btn-default add-to-cart">Xem sản phẩm</a>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/wwwroot/Content/images/HoaCaoCap_99_doahoahong.jpeg" alt="" style="width: 250px; height: 180px;" />
+                                                <h2>1.500.000 VND</h2>
+                                                <p>999 Đóa hoa hồng</p>
+                                                <a href="@Url.Action("Details","Home")" class="btn btn-default add-to-cart">Xem sản phẩm</a>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/wwwroot/Content/images/HoaCaoCap_tinh_yeu_mai_xanh.png" alt="" style="width: 250px; height: 180px;" />
+                                                <h2>1.500.000 VND</h2>
+                                                <p>Tình yêu mãi xanh</p>
+                                                <a href="@Url.Action("Details","Home")" class="btn btn-default add-to-cart">Xem sản phẩm</a>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/wwwroot/Content/images/HoaCaoCap_tinhyeu_lunglinh.png" alt="" style="width: 250px; height: 180px;" />
+                                                <h2>1.500.000 VND</h2>
+                                                <p>Tình yêu lung linh</p>
+                                                <a href="@Url.Action("Details","Home")" class="btn btn-default add-to-cart">Xem sản phẩm</a>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/wwwroot/Content/images/sk_chuc mung tot nghiep.png" alt="" style="width: 250px; height: 180px;" />
+                                                <h2>1.500.000 VND</h2>
+                                                <p>Chúc mừng tốt nghiệp</p>
+                                                <a href="@Url.Action("Details","Home")" class="btn btn-default add-to-cart">Xem sản phẩm</a>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/wwwroot/Content/images/hc_you and me.png" alt="" style="width: 250px; height: 180px;" />
+                                                <h2>1.500.000 VND</h2>
+                                                <p>You and me</p>
+                                                <a href="@Url.Action("Details","Home")" class="btn btn-default add-to-cart">Xem sản phẩm</a>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div><!--/recommended_items-->
+
+            </div>
+        </div>
+    </div>
+</section>

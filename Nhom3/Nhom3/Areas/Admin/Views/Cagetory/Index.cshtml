@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Nhom3.Model.DANHMUC>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header" style="text-align:left;">Quản lý danh mục</h1>
+        </div>
+    </div>
+    <div class="row" style="text-align:left;margin-left:10px;margin-bottom:5px;">
+        <p>
+
+            <button class="btn btn-sm btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <a href=" @Url.Action("Create", "Cagetory")">+Thêm danh mục</a>
+            </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <div class="col-lg-12">
+                    <form>
+                        <div class="mb-3 col-lg-3" style="margin-bottom: 20px;">
+                            <label for="madanhmuc" class="form-label">Mã danh mục</label>
+                            <input type="text" class="form-control" id="madanhmuc">
+                        </div>
+                        <div class="mb-3 col-lg-3">
+                            <label for="tendanhmuc" class="form-label">Tên danh mục</label>
+                            <input type="text" class="form-control" id="tendanhmuc">
+                        </div>
+                        <div class="mb-3 col-lg-2">
+                            <label for="trangthai" class="form-label">Trạng thái</label>
+                            <select class="form-select" id="trangthai">
+                                <option selected="">-Select-</option>
+                                <option value="1">Hiện</option>
+                                <option value="2">Ẩn</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4" style="margin-top: 25px;">
+                            <button type="submit" class="btn btn-primary">Thêm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên danh mục</th>
+
+                   
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+
+                    <tbody>
+                        <tr>
+                            <td>@item.MADANHMUC</td>
+                            <td>@item.TENDANHMUC</td>
+
+
+                     
+                            <td>
+                                <button class="btn btn-info">
+                                    <a href="@Url.Action("Edit","Cagetory", new {id = item.MADANHMUC })" style="text-decoration: none; color: white;">Sửa</a>
+                                </button>
+
+                                <button class="btn btn-danger">
+                                    <a href="@Url.Action("Delete","Cagetory", new {id = item.MADANHMUC })" style="text-decoration: none; color: white;">Xóa</a>
+                                </button>
+                            </td>
+                        </tr>
+                       
+                    </tbody>
+                }
+            </table>
+
+        </div>
+    </div>
+</div>

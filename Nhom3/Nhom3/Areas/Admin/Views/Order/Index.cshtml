@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Nhom3.Model.CHITIETDONHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header" style="text-align:left;">Thông tin đơn hàng</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-hover">
+
+                <thead>
+                    <tr>
+                        <th>Mã đơn hàng</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Ghi chú</th>
+                        <th>Số lượng</th>
+
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@item.MADONHANG</td>
+                            <td>@item.SANPHAM.TENSANPHAM</td>
+                            <td>@item.GHICHU</td>
+                            <td>@item.SOLUONG</td>
+
+                            <td>
+                                <button class="btn btn-info">
+                                    <a href="@Url.Action("Details", "Order", new {id = item.MADONHANG})">Xem chi tiết</a>
+                                </button>
+                                <button class="btn btn-success">
+                                    <a href="@Url.Action("Delete", "Order", new { id = item.MADONHANG })">Xóa</a>
+
+                                </button>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                }
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
