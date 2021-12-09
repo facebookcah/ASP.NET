@@ -5,94 +5,97 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-
-
-
-<div>
-    <h4>Xóa sản phẩm</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    
-        <dt>
-            @Html.DisplayNameFor(model => model.DANHMUCCON1.TENDANHMUCCON)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DANHMUCCON1.TENDANHMUCCON)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TENSANPHAM)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TENSANPHAM)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MOTA)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MOTA)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HOACHINH)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HOACHINH)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HOAPHU)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HOAPHU)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CHIEUNGANG)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CHIEUNGANG)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CHIEUCAO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CHIEUCAO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GIABAN)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GIABAN)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GIAKM)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GIAKM)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Xóa" class="btn btn-default" /> |
-            @Html.ActionLink("Quay lại", "Index")
+<p style="color:red">@ViewBag.Error</p>
+<h3 style="margin:0;">Bạn có chắc muốn xóa sản phẩm này?</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Thông tin sản phẩm sẽ xóa</h4>
+                </div>
+                <div class="card-body">
+                    <form style="cursor:default">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TENSANPHAM, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.TENSANPHAM, new { htmlAttributes = new { @class = "form-control", @style = "margin-top:2.6rem", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.MOTA, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.MOTA, new { htmlAttributes = new { @class = "form-control", @style = "margin-top:2.6rem", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.GIABAN, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.GIABAN, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.GIAKM, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.GIAKM, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.HOACHINH, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.HOACHINH, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.HOAPHU, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.HOAPHU, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.CHIEUCAO, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.CHIEUCAO, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.CHIEUNGANG, htmlAttributes: new { @class = "bmd-label-floating" })
+                                            @Html.EditorFor(model => model.CHIEUNGANG, new { htmlAttributes = new { @class = "form-control", rows = 3, disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MADANHMUCCON, "Tên danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.CHIEUNGANG, new { htmlAttributes = new { @class = "form-control", rows = 3, disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.DANHMUCCON.TENDANHMUCCON, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
         </div>
-    }
+    </div>
 </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Xóa" class="btn btn-sm btn-primary normal-text" />
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-primary normal-text" })
+}
+

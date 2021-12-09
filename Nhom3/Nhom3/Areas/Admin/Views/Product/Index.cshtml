@@ -45,7 +45,7 @@
                                     <a href="@Url.Action("Details","Product", new{id = item.MASANPHAM})" style="text-decoration: none; color: white;">Xem</a>
                                 </button>
                                 <button class="btn btn-info">
-                                    <a href="@Url.Action("Create","Product")" style="text-decoration: none; color: white;">Sửa</a>
+                                    <a href="@Url.Action("Edit","Product" , new {id = item.MASANPHAM })" style="text-decoration: none; color: white;">Sửa</a>
                                 </button>
                                 <button class="btn btn-danger">
                                     <a href="@Url.Action("Delete","Product", new{id = item.MASANPHAM})" style="text-decoration: none; color: white;">Xoá</a>

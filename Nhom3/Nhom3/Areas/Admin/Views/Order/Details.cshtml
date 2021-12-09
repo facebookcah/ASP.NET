@@ -5,47 +5,66 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container-fluid">
+    <h4>Chi tiết đơn hàng</h4>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.MADONHANG,"Mã đơn hàng", htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.MADONHANG, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SANPHAM.TENSANPHAM, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.SANPHAM.TENSANPHAM, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DONHANG.HTTT.TENHTTT,"Hình thức thanh toán" ,htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.DONHANG.HTTT.TENHTTT, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
 
-<div>
-    <h4>CHITIETDONHANG</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DONHANG.MADONHANG)
-        </dt>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DONHANG.NGAYDAT, "Ngày đặt",htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.DONHANG.NGAYDAT, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.DONHANG.MADONHANG)
-        </dd>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SANPHAM.TENSANPHAM)
-        </dt>
+                @Html.LabelFor(model => model.DONHANG.TINHTRANG, "Tình trạng", htmlAttributes: new { @class = "bmd-label-floating" })
+                @if (Model.DONHANG.TINHTRANG == 1)
+                {
+                    @Html.EditorFor(model => model.DONHANG.TINHTRANG, "Đã thanh toán", new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
+                }
+                else
+                {
+                    @Html.EditorFor(model => model.DONHANG.TINHTRANG, "Chưa thanh toán", new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
+                }
 
-        <dd>
-            @Html.DisplayFor(model => model.SANPHAM.TENSANPHAM)
-        </dd>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SOLUONG,"Số lượng đặt", htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GHICHU)
-        </dt>
+    <div class="row">
+        <div class="col-md-9">
 
-        <dd>
-            @Html.DisplayFor(model => model.GHICHU)
-        </dd>
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-primary normal-text" })
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SOLUONG)
-        </dt>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.SOLUONG)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -17,8 +17,8 @@
                     <a href="@Url.Action("Index","Home","")"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
                 </li>
          
-                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Product/Index" ? "active" : "")">
-                    <a href="@Url.Action("Index","Category","")"><i class="fa fa-tasks"></i>Quản lý danh mục</a>
+                <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">
+                    <a href="@Url.Action("Index","Cagetory","")"><i class="fa fa-tasks"></i>Quản lý danh mục</a>
                 </li>
 
                 <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">

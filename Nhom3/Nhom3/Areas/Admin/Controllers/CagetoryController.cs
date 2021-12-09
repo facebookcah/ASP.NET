@@ -110,9 +110,17 @@ namespace Nhom3.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             DANHMUC dANHMUC = db.DANHMUCs.Find(id);
-            db.DANHMUCs.Remove(dANHMUC);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.DANHMUCs.Remove(dANHMUC);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Đã xảy ra lỗi! " + ex.Message;
+                return View(dANHMUC);
+            }
         }
 
         protected override void Dispose(bool disposing)

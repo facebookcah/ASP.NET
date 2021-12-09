@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Nhom3.Model.CHITIETDONHANG>
 
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -19,9 +20,10 @@
                     <tr>
                         <th>Mã đơn hàng</th>
                         <th>Tên sản phẩm</th>
-                        <th>Ghi chú</th>
+                        <th>Hình thức thanh toán</th>
+                        <th>Ngày đặt</th>
+                        <th>Tình trạng</th>
                         <th>Số lượng</th>
-
                     </tr>
                 </thead>
                 @foreach (var item in Model)
@@ -30,15 +32,27 @@
                         <tr>
                             <td>@item.MADONHANG</td>
                             <td>@item.SANPHAM.TENSANPHAM</td>
-                            <td>@item.GHICHU</td>
+                            <td>@item.DONHANG.HTTT.TENHTTT</td>
+                            <td>@item.DONHANG.NGAYDAT</td>
+
+                           @if(item.DONHANG.TINHTRANG == 1)
+                           {
+                               <td>Đã thanh toán</td>
+                           }
+                           else
+                           {
+                               <td>Chưa thanh toán</td>
+                           }
                             <td>@item.SOLUONG</td>
+
+
 
                             <td>
                                 <button class="btn btn-info">
-                                    <a href="@Url.Action("Details", "Order", new {id = item.MADONHANG})">Xem chi tiết</a>
+                                    <a href="@Url.Action("Details", "Order", new {id = item.MADONHANG})"  style="text-decoration: none; color: white;">Xem chi tiết</a>
                                 </button>
                                 <button class="btn btn-success">
-                                    <a href="@Url.Action("Delete", "Order", new { id = item.MADONHANG })">Xóa</a>
+                                    <a href="@Url.Action("Delete", "Order", new { id = item.MADONHANG }) " style="text-decoration: none; color: white;">Xóa</a>
 
                                 </button>
 
