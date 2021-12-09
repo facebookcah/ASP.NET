@@ -75,6 +75,7 @@ namespace Nhom3.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            
             ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
             ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
             return View(sANPHAM);
@@ -87,15 +88,27 @@ namespace Nhom3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MASANPHAM,TENSANPHAM,MOTA,HOACHINH,HOAPHU,CHIEUNGANG,CHIEUCAO,GIABAN,GIAKM,MADANHMUCCON")] SANPHAM sANPHAM)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(sANPHAM).State = EntityState.Modified;
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    db.Entry(sANPHAM).State = EntityState.Modified;
+                    db.SaveChanges();
+                    
+                }
                 return RedirectToAction("Index");
             }
-            ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
-            ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
-            return View(sANPHAM);
+            catch (Exception ex)
+            {
+                ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
+                ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
+                return View(sANPHAM);
+            }
+
+            
+          //  ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
+            
+            
         }
 
         // GET: Admin/Product/Delete/5
@@ -119,9 +132,18 @@ namespace Nhom3.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             SANPHAM sANPHAM = db.SANPHAMs.Find(id);
-            db.SANPHAMs.Remove(sANPHAM);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.SANPHAMs.Remove(sANPHAM);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Không thể xóa sản phẩm này, Mã lỗi: " + ex.Message;
+                return View(sANPHAM);
+            }
+
         }
 
         protected override void Dispose(bool disposing)
