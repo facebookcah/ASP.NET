@@ -1,7 +1,11 @@
-﻿@{
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+﻿@model IEnumerable<Nhom3.Model.CHITIETDONHANG>
 
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
@@ -11,73 +15,56 @@
     <div class="row">
         <div class="col-lg-12">
             <table class="table table-hover">
+
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Mã đơn hàng</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Hình thức thanh toán</th>
                         <th>Ngày đặt</th>
                         <th>Tình trạng</th>
-                        <th>Tên khách hàng</th>
-                        <th>HTTT</th>
-                        <th>Thành tiền</th>
-                        <th>Thao tác</th>
+                        <th>Số lượng</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>001</td>
-                        <td>12/10/2020</td>
-                        <td>Đã thanh toán</td>
-                        <td>Nguyễn Thị Ngọc Anh</td>
-                        <td>Chuyển khoản</td>
-                        <td>1000000</td>
-                        <td>
-                            <button class="btn btn-info">Xem chi tiết</button>
-                            <button class="btn btn-success">Sửa</button>
+                @foreach (var item in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@item.MADONHANG</td>
+                            <td>@item.SANPHAM.TENSANPHAM</td>
+                            <td>@item.DONHANG.HTTT.TENHTTT</td>
+                            <td>@item.DONHANG.NGAYDAT</td>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>10/03/2020</td>
-                        <td>Đã thanh toán</td>
-                        <td>Nguyễn Thị Hợp</td>
-                        <td>Chuyển khoản</td>
-                        <td>1000000</td>
-                        <td>
-                            <button class="btn btn-info">Xem chi tiết</button>
-                            <button class="btn btn-success">Sửa</button>
+                           @if(item.DONHANG.TINHTRANG == 1)
+                           {
+                               <td>Đã thanh toán</td>
+                           }
+                           else
+                           {
+                               <td>Chưa thanh toán</td>
+                           }
+                            <td>@item.SOLUONG</td>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>12/10/2020</td>
-                        <td>Đã thanh toán</td>
-                        <td>Mai Văn Nam</td>
-                        <td>Chuyển khoản</td>
-                        <td>1000000</td>
-                        <td>
-                            <button class="btn btn-info">Xem chi tiết</button>
-                            <button class="btn btn-success">Sửa</button>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>004</td>
-                        <td>12/10/2020</td>
-                        <td>Chưa thanh toán</td>
-                        <td>Phạm Văn Phi</td>
-                        <td>Trực tiếp</td>
-                        <td>1000000</td>
-                        <td>
-                            <button class="btn btn-info">Xem chi tiết</button>
-                            <button class="btn btn-success">Sửa</button>
 
-                        </td>
-                    </tr>
-                </tbody>
+                            <td>
+                                <button class="btn btn-info">
+                                    <a href="@Url.Action("Details", "Order", new {id = item.MADONHANG})"  style="text-decoration: none; color: white;">Xem chi tiết</a>
+                                </button>
+                                <button class="btn btn-success">
+                                    <a href="@Url.Action("Delete", "Order", new { id = item.MADONHANG }) " style="text-decoration: none; color: white;">Xóa</a>
+
+                                </button>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                }
+
             </table>
 
         </div>
     </div>
 </div>
+

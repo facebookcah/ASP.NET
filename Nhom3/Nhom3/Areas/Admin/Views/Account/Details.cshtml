@@ -1,0 +1,53 @@
+﻿@model Nhom3.Model.TAIKHOAN
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <h4>Chi tiết tài khoản</h4>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TENDANGNHAP, "Tên đăng nhập", htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.TENDANGNHAP, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.MATKHAU, htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.MATKHAU, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TRANGTHAI, "Trạng thái", htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.TRANGTHAI, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.KHACHHANG.TENKH, "Tên khách hàng", htmlAttributes: new { @class = "bmd-label-floating" })
+                @Html.EditorFor(model => model.KHACHHANG.TENKH, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.QUYEN.TENQUYEN, "Quyền sử dụng", htmlAttributes: new { @class = "bmd-label-floating" })
+            @Html.EditorFor(model => model.QUYEN.TENQUYEN, new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-primary normal-text" })
+        </div>
+
+    </div>
+
+</div>

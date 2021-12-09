@@ -1,7 +1,10 @@
-﻿@{
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+﻿@model IEnumerable<Nhom3.Model.SANPHAM>
 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
@@ -10,92 +13,50 @@
     </div>
     <div class="row" style="text-align:left;margin-left:10px;margin-bottom:10px;">
         <button class="btn btn-sm btn-success ">
-            <a href="addProduct.html" style="text-decoration: none; color: white;">+Thêm sản phẩm</a>
+            <a href="@Url.Action("Create","Product")" style="text-decoration: none; color: white;">+Thêm sản phẩm</a>
         </button>
     </div>
     <div class="row">
         <div class="col-lg-12">
-
+          
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
-
-                        <th>Ảnh</th>
                         <th>Giá bán</th>
                         <th>Giá khuyến mãi</th>
-                        <th>Mã danh mục</th>
-
                         <th>Thao tác</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>001</td>
-                        <td>Hoa cao cấp</td>
-                        <td><img src="https://thegioihoa.net/file/sanpham/hoa-sinh-nhat/moi/1580806659-hoa-sinh-nhat-1.jpg" width="50px" height="50px"></td>
-                        <td>1500000</td>
-                        <td>1000000</td>
-                        <td>1</td>
-                        <td>
-                            <button class="btn btn-success">Xem</button>
-                            <button class="btn btn-info">
-                                <a href="updateProduct.html" style="text-decoration: none; color: white;">Sửa</a>
-                            </button>
-                            <button class="btn btn-danger">Xóa</button>
+                @foreach (var item in Model)
+                {
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Hoa cao cấp</td>
-                        <td><img src="https://thegioihoa.net/file/sanpham/hoa-sinh-nhat/moi/1580806659-hoa-sinh-nhat-1.jpg" width="50px" height="50px"></td>
-                        <td>1500000</td>
-                        <td>1000000</td>
-                        <td>1</td>
-                        <td>
-                            <button class="btn btn-success">Xem</button>
-                            <button class="btn btn-info">
-                                <a href="updateProduct.html" style="text-decoration: none; color: white;">Sửa</a>
-                            </button>
-                            <button class="btn btn-danger">Xóa</button>
+                    <tbody>
+                        <tr>
+                            <td>@item.MASANPHAM</td>
+                            <td>@item.TENSANPHAM</td>
+                  
+                            <td>@item.GIABAN</td>
+                            <td>@item.GIAKM</td>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Hoa cao cấp</td>
-                        <td><img src="https://thegioihoa.net/file/sanpham/hoa-sinh-nhat/moi/1580806659-hoa-sinh-nhat-1.jpg" width="50px" height="50px"></td>
-                        <td>1500000</td>
-                        <td>1000000</td>
-                        <td>1</td>
-                        <td>
-                            <button class="btn btn-success">Xem</button>
-                            <button class="btn btn-info">
-                                <a href="updateProduct.html" style="text-decoration: none; color: white;">Sửa</a>
-                            </button>
-                            <button class="btn btn-danger">Xóa</button>
+                            <td>
+                                <button class="btn btn-success">
+                                    <a href="@Url.Action("Details","Product", new{id = item.MASANPHAM})" style="text-decoration: none; color: white;">Xem</a>
+                                </button>
+                                <button class="btn btn-info">
+                                    <a href="@Url.Action("Edit","Product" , new {id = item.MASANPHAM })" style="text-decoration: none; color: white;">Sửa</a>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <a href="@Url.Action("Delete","Product", new{id = item.MASANPHAM})" style="text-decoration: none; color: white;">Xoá</a>
+                                </button>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>004</td>
-                        <td>Hoa cao cấp</td>
-                        <td><img src="https://thegioihoa.net/file/sanpham/hoa-sinh-nhat/moi/1580806659-hoa-sinh-nhat-1.jpg" width="50px" height="50px"></td>
-                        <td>1500000</td>
-                        <td>1000000</td>
-                        <td>1</td>
-                        <td>
-                            <button class="btn btn-success">Xem</button>
-                            <button class="btn btn-info">
-                                <a href="updateProduct.html" style="text-decoration: none; color: white;">Sửa</a>
-                            </button>
-                            <button class="btn btn-danger">Xóa</button>
+                            </td>
+                        </tr>
 
-                        </td>
-                    </tr>
-                </tbody>
+                    </tbody>
+                }
+
             </table>
         </div>
     </div>

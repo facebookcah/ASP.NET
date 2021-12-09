@@ -1,0 +1,58 @@
+﻿@model Nhom3.Model.CHITIETDONHANG
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .dl-horizontal {
+        padding-left: 10rem;
+    }
+
+    dl dd {
+        padding-left: 8rem;
+    }
+</style>
+<h3 >Bạn có chắc muốn xóa hóa đơn này??</h3>
+<div>
+    <dl class="dl-horizontal col-lg-4">
+        <dt>
+            @Html.LabelFor(model => model.MADONHANG, "Mã đơn hàng", htmlAttributes: new { @class = "bmd-label-floating" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MADONHANG)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.SANPHAM.TENSANPHAM, "Tên sản phẩm", htmlAttributes: new { @class = "bmd-label-floating" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SANPHAM.TENSANPHAM)
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.DONHANG.NGAYDAT, "Ngày đặt", htmlAttributes: new { @class = "bmd-label-floating" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DONHANG.NGAYDAT)
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.DONHANG.HTTT.TENHTTT, "Hình thức thanh toán", htmlAttributes: new { @class = "bmd-label-floating" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DONHANG.HTTT.TENHTTT)
+        </dd>
+
+        <dt>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Xóa" class="btn btn-sm btn-primary normal-text" />
+                @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-primary normal-text" })}
+        </dt>
+    </dl>
+</div>
