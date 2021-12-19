@@ -4,110 +4,93 @@
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-@using (Html.BeginForm())
+<div class="row">
+    <div class="col-lg-12 bg-primary">
+        <h1 class="page-header" style="text-align:left;">Sửa thông tin sản phẩm</h1>
+    </div>
+</div>
+@using (Html.BeginForm("Edit","Product",FormMethod.Post))
 {
-@Html.AntiForgeryToken()
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header card-header-primary">
-                                    <h4 class="card-title">Sửa thông tin sản phẩm</h4>
-                                </div>
-                                <div class="card-body" >
-                                    <form>
-                                        <div class="row">
-                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                            <div class="col-md-8">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.TENSANPHAM, htmlAttributes: new { @class = "bmd-label-floating" })
-                                                            @Html.EditorFor(model => model.TENSANPHAM, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.TENSANPHAM, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.GIABAN, htmlAttributes: new { @class = "bmd-label-floating" })
-                                                            @Html.EditorFor(model => model.GIABAN, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.GIABAN, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.GIAKM, htmlAttributes: new { @class = "bmd-label-floating" })
-                                                            @Html.EditorFor(model => model.GIAKM, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.GIAKM, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.CHIEUCAO, htmlAttributes: new { @class = "bmd-label-floating" })
-                                                            @Html.EditorFor(model => model.CHIEUCAO, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.CHIEUCAO, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="col-md-12" style="margin-top:20px;">
+        <div class="form-group">
+            @Html.LabelFor(model => model.TENSANPHAM, htmlAttributes: new { @class = "bmd-label-floating",@style="float:left;" })
+            @Html.EditorFor(model => model.TENSANPHAM, new { htmlAttributes = new { @class = "form-control", @style = "padding:10px;" } })
+            @Html.ValidationMessageFor(model => model.TENSANPHAM, "", new { @class = "text-danger" })
+        </div>
+        </div>
 
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.CHIEUNGANG, htmlAttributes: new { @class = "bmd-label-floating" })
-                                                            @Html.EditorFor(model => model.CHIEUNGANG, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.CHIEUNGANG, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.HOACHINH, htmlAttributes: new { @class = "bmd-label-floating" })
-                                                            @Html.EditorFor(model => model.HOACHINH, new { htmlAttributes = new { @class = "form-control" } })
-                                                            @Html.ValidationMessageFor(model => model.HOACHINH, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.HOAPHU, htmlAttributes: new { @class = "bmd-label-floating" })
-                                                            @Html.EditorFor(model => model.HOAPHU, new { htmlAttributes = new { @class = "form-control", rows = 3 } })
-                                                            @Html.ValidationMessageFor(model => model.HOAPHU, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.MOTA, htmlAttributes: new { @class = "bmd-label-floating" })
-                                                            @Html.EditorFor(model => model.MOTA, new { htmlAttributes = new { @class = "form-control", rows = 3 } })
-                                                            @Html.ValidationMessageFor(model => model.MOTA, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.MADANHMUCCON,"Tên danh mục", htmlAttributes: new { @class = "control-label" })
-                                                            
-                                                                @Html.DropDownList("MADANHMUCCON", null, htmlAttributes: new { @class = "form-control" })
-                                                                @Html.ValidationMessageFor(model => model.MADANHMUCCON, "", new { @class = "text-danger" })
-                                                            
-                                                        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.GIABAN, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
+                @Html.EditorFor(model => model.GIABAN, new { htmlAttributes = new { @class = "form-control", @style = "padding:10px;" } })
+                @Html.ValidationMessageFor(model => model.GIABAN, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                           
-                                        </div>
-                                        <input type="submit" value="Lưu" class="btn btn-sm btn-primary normal-text" />
-                                        @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-primary normal-text" })
-                                        <div class="clearfix"></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                }
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.GIAKM, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
+                @Html.EditorFor(model => model.GIAKM, new { htmlAttributes = new { @class = "form-control", @style = "padding:10px;" } })
+                @Html.ValidationMessageFor(model => model.GIAKM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CHIEUCAO, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
+                @Html.EditorFor(model => model.CHIEUCAO, new { htmlAttributes = new { @class = "form-control", @style = "padding:10px;" } })
+                @Html.ValidationMessageFor(model => model.CHIEUCAO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CHIEUNGANG, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
+                @Html.EditorFor(model => model.CHIEUNGANG, new { htmlAttributes = new { @class = "form-control", @style = "padding:10px;" } })
+                @Html.ValidationMessageFor(model => model.CHIEUNGANG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.HOACHINH, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
+                @Html.EditorFor(model => model.HOACHINH, new { htmlAttributes = new { @class = "form-control", @style = "padding:10px;" } })
+                @Html.ValidationMessageFor(model => model.HOACHINH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.HOAPHU, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
+                @Html.EditorFor(model => model.HOAPHU, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.HOAPHU, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.MOTA, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
+                @Html.TextAreaFor(model => model.MOTA, new { @class = "form-control",rows="5" })
+                @Html.ValidationMessageFor(model => model.MOTA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.MADANHMUCCON, "Danh mục", htmlAttributes: new { @class = "control-label", @style = "float:left;" })
+
+                @Html.DropDownList("MADANHMUCCON", null, htmlAttributes: new { @class = "form-control", @style = "padding:10px;" })
+                @Html.ValidationMessageFor(model => model.MADANHMUCCON, "", new { @class = "text-danger" })
+
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <input type="submit" value="Lưu" class="btn btn-sm btn-primary normal-text" />
+            @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-sm btn-danger normal-text" })
+        </div>
+}

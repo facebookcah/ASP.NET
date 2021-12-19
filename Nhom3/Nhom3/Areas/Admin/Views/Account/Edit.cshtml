@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<div class="row">
+<div class="row bg-primary">
     <div class="col-lg-12">
         <h1 class="page-header" style="text-align:left;">Sửa thông tin tài khoản</h1>
     </div>
@@ -14,57 +14,61 @@
 {
     @Html.AntiForgeryToken()
     
-<div class="form-horizontal">
+<div class="form-horizontal" style="margin-top:20px;">
    
-    <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.MATAIKHOAN)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.TENDANGNHAP, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-4">
+        
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.TENDANGNHAP, htmlAttributes: new { @class = "control-label ", @style = "float:left;" })
             @Html.EditorFor(model => model.TENDANGNHAP, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.TENDANGNHAP, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.MATKHAU, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-4">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.MATKHAU, htmlAttributes: new { @class = "control-label", @style = "float:left;" })
+
             @Html.EditorFor(model => model.MATKHAU, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.MATKHAU, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.TRANGTHAI, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-4">
-            <div class="checkbox">
+        <div class="col-md-12">
+            
+                @Html.LabelFor(model => model.TRANGTHAI, htmlAttributes: new { @class = "control-label", @style = "float:left;" })
+            <br />
                 @Html.EditorFor(model => model.TRANGTHAI)
                 @Html.ValidationMessageFor(model => model.TRANGTHAI, "", new { @class = "text-danger" })
-            </div>
+           
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.MAKH, "Tên khách hàng", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-4">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.MAKH, "Tên khách hàng", htmlAttributes: new { @class = "control-label ", @style = "float:left;" })
+
             @Html.DropDownList("MAKH", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.MAKH, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.TENQUYEN, "Tên quyền", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-4">
+       
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.TENQUYEN, "Tên quyền", htmlAttributes: new { @class = "control-label`", @style = "float:left;" })
             @Html.DropDownList("TENQUYEN", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.TENQUYEN, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <div class="form-group col-lg-8">
+    <div class="form-group col-lg-12">
         <input type="submit" value="Lưu" class="btn btn-sm btn-primary normal-text" />
-        @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-primary normal-text" })
+        @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-sm btn-danger normal-text" })
     </div>
 </div>
 }

@@ -4,55 +4,64 @@
     ViewBag.Title = "Delete";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-<style>
-    .dl-horizontal {
-        padding-left: 10rem;
-    }
-
-    dl dd {
-        padding-left: 8rem;
-    }
-</style>
-<h3 >Bạn có chắc muốn xóa hóa đơn này??</h3>
-<div>
-    <dl class="dl-horizontal col-lg-4">
-        <dt>
+<div class="row bg-primary">
+    <div class="col-lg-12">
+        <h1 class="page-header" style="text-align:left;">Xóa đơn hàng</h1>
+    </div>
+</div>
+<h3 style="color:red;text-align:center; margin-top:20px;">Bạn có chắc muốn xóa đơn hàng này?</h3>
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-3">
+        <div class="form-group">
             @Html.LabelFor(model => model.MADONHANG, "Mã đơn hàng", htmlAttributes: new { @class = "bmd-label-floating" })
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MADONHANG)
-        </dd>
-
-        <dt>
-            @Html.LabelFor(model => model.SANPHAM.TENSANPHAM, "Tên sản phẩm", htmlAttributes: new { @class = "bmd-label-floating" })
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SANPHAM.TENSANPHAM)
-        </dd>
-        <dt>
-            @Html.LabelFor(model => model.DONHANG.NGAYDAT, "Ngày đặt", htmlAttributes: new { @class = "bmd-label-floating" })
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DONHANG.NGAYDAT)
-        </dd>
-        <dt>
+            @Html.EditorFor(model => model.MADONHANG, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.SANPHAM.TENSANPHAM, htmlAttributes: new { @class = "bmd-label-floating" })
+            @Html.EditorFor(model => model.SANPHAM.TENSANPHAM, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
             @Html.LabelFor(model => model.DONHANG.HTTT.TENHTTT, "Hình thức thanh toán", htmlAttributes: new { @class = "bmd-label-floating" })
-        </dt>
+            @Html.EditorFor(model => model.DONHANG.HTTT.TENHTTT, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.DONHANG.HTTT.TENHTTT)
-        </dd>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.DONHANG.NGAYDAT, "Ngày đặt", htmlAttributes: new { @class = "bmd-label-floating" })
+            @Html.EditorFor(model => model.DONHANG.NGAYDAT, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+</div>
 
-        <dt>
-            @using (Html.BeginForm())
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.DONHANG.TINHTRANG, "Tình trạng", htmlAttributes: new { @class = "bmd-label-floating" })
+            @if (Model.DONHANG.TINHTRANG == 1)
             {
-                @Html.AntiForgeryToken()
-                <input type="submit" value="Xóa" class="btn btn-sm btn-primary normal-text" />
-                @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-primary normal-text" })}
-        </dt>
-    </dl>
+                @Html.EditorFor(model => model.DONHANG.TINHTRANG, "Đã thanh toán", new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
+            }
+            else
+            {
+                @Html.EditorFor(model => model.DONHANG.TINHTRANG, "Chưa thanh toán", new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
+            }
+
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.SOLUONG, "Số lượng đặt", htmlAttributes: new { @class = "bmd-label-floating" })
+            @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <input type="submit" value="Xóa" class="btn btn-sm btn-danger normal-text" />
+    @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-sm btn-primary normal-text" })
 </div>

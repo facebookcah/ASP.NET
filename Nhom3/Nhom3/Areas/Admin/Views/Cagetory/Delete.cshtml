@@ -9,30 +9,36 @@
 {
     <br />
     <div class="alert alert-danger" role="alert">@ViewBag.Error</div>}
-<div class="row">
+<div class="row bg-primary">
     <div class="col-lg-12">
         <h1 class="page-header" style="text-align:left;">Xóa danh mục</h1>
     </div>
 </div>
-<h3>Bạn có chắc muốn xóa danh mục này?</h3>
-<div>
-    <dl class="dl-horizontal col-md-4">
-        <dt>
-            @Html.LabelFor(model => model.TENDANHMUC, "Tên danh mục",htmlAttributes: new { @class = "bmd-label-floating" })
-        </dt>
+<h3 style="color:red;"> Bạn có chắc muốn xóa danh mục này ?</h3>
 
-        <dd>
-            @Html.DisplayFor(model => model.TENDANHMUC)
-        </dd>
-        <dt>
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-              
-                    <input type="submit" value="Lưu" class="btn btn-sm btn-primary " />
-                    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-primary " })
-                
-            }
-        </dt>
-    </dl>
+
+<div class="form-horizontal">
+
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group col-md-12 ">
+            @Html.LabelFor(model => model.TENDANHMUC, "Tên danh mục", htmlAttributes: new { @class = "control-label", @style = "float:left;                                                                    " })
+            <div class="">
+                @Html.EditorFor(model => model.TENDANHMUC, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.TENDANHMUC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <input type="submit" value="Xóa" class="btn btn-sm btn-danger " />
+            @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-sm btn-primary " })
+        </div>
+
+    }
+
+
 </div>

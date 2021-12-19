@@ -1,4 +1,4 @@
-namespace Nhom3.Model
+﻿namespace Nhom3.Model
 {
     using System;
     using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace Nhom3.Model
         [Key]
         public int MADANHMUC { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Tên danh mục không được để trống")]
         [StringLength(100)]
         public string TENDANHMUC { get; set; }
 

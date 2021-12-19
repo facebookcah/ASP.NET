@@ -19,6 +19,11 @@ namespace Nhom3.Areas.Admin
                 "Admin/{controller}/{action}/{id}",
                 new { controller="Home",action = "Index", id = UrlParameter.Optional }
             );
+            context.MapRoute(
+                "Admin_category",
+                "Admin/{controller}/{action}/{id}",
+                new { controller = "Category", action = "IndexCategory", id = UrlParameter.Optional }
+            );
         }
     }
 }

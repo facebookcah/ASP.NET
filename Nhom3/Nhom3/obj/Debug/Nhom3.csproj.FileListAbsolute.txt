@@ -318,3 +318,7 @@ D:\ASP.NET\ASP.NET\ASP.NET-main\Nhom3\Nhom3\obj\Debug\Nhom3.csproj.CopyComplete
 D:\ASP.NET\ASP.NET\ASP.NET-main\Nhom3\Nhom3\obj\Debug\Nhom3.dll
 D:\ASP.NET\ASP.NET\ASP.NET-main\Nhom3\Nhom3\obj\Debug\Nhom3.pdb
 D:\ASP.NET\ASP.NET\ASP.NET-main\Nhom3\Nhom3\obj\Debug\Nhom3.csprojAssemblyReference.cache
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3\bin\EntityFramework.dll
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3\bin\EntityFramework.SqlServer.dll
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3\bin\EntityFramework.xml
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3\bin\EntityFramework.SqlServer.xml
