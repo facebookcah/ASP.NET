@@ -59,9 +59,9 @@
     <Compile Include="Domains\SanPham.cs" />
     <Compile Include="Domains\sysdiagram.cs" />
     <Compile Include="Domains\TaiKhoan.cs" />
-    <Compile Include="Migrations\202112221506191_g1.cs" />
-    <Compile Include="Migrations\202112221506191_g1.Designer.cs">
-      <DependentUpon>202112221506191_g1.cs</DependentUpon>
+    <Compile Include="Migrations\202112230848436_addRequired.cs" />
+    <Compile Include="Migrations\202112230848436_addRequired.Designer.cs">
+      <DependentUpon>202112230848436_addRequired.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,8 +73,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202112221506191_g1.resx">
-      <DependentUpon>202112221506191_g1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202112230848436_addRequired.resx">
+      <DependentUpon>202112230848436_addRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

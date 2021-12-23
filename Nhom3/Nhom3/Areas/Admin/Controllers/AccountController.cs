@@ -38,6 +38,7 @@ namespace Nhom3.Areas.Admin.Controllers
         // GET: Admin/Account/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
@@ -48,6 +49,14 @@ namespace Nhom3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
         {
+            var accounts = db.TaiKhoans.ToList();
+            var exist=accounts.Any(i => i.TenTaiKhoan.Equals(taiKhoan.TenTaiKhoan));
+            if (exist)
+            {
+                ViewBag.duplicate = "no";
+                ViewBag.Error = "Tên tài khoản đã tồn tại";
+                return View(taiKhoan);
+            }
             if (ModelState.IsValid)
             {
                 db.TaiKhoans.Add(taiKhoan);
@@ -105,8 +114,7 @@ namespace Nhom3.Areas.Admin.Controllers
         }
 
         // POST: Admin/Account/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+       [HttpPost]
         public ActionResult DeleteConfirmed(string id)
         {
             TaiKhoan taiKhoan = db.TaiKhoans.Find(id);

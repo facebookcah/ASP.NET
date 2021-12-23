@@ -3,7 +3,7 @@ namespace Nhom3.Core.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class g1 : DbMigration
+    public partial class addRequired : DbMigration
     {
         public override void Up()
         {
@@ -81,12 +81,12 @@ namespace Nhom3.Core.Migrations
                 c => new
                     {
                         TenTaiKhoan = c.String(nullable: false, maxLength: 100, unicode: false),
-                        MatKhau = c.String(nullable: false, maxLength: 100, unicode: false),
+                        MatKhau = c.String(nullable: false, maxLength: 20, unicode: false),
                         Quyen = c.Int(nullable: false),
                         TinhTrang = c.Boolean(nullable: false),
-                        TenKhachHang = c.String(maxLength: 100),
+                        TenKhachHang = c.String(nullable: false),
                         Email = c.String(maxLength: 100),
-                        SoDienThoai = c.String(maxLength: 12, unicode: false),
+                        SoDienThoai = c.String(nullable: false, maxLength: 12, unicode: false),
                         DiaChi = c.String(storeType: "ntext"),
                     })
                 .PrimaryKey(t => t.TenTaiKhoan);
