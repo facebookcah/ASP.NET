@@ -1,5 +1,5 @@
 ﻿@model Nhom3.Core.Domains.SanPham
-
+@using System.Collections.Generic;
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -11,7 +11,11 @@
         <h1 class="page-header" style="text-align:left;">Thêm mới sản phẩm </h1>
     </div>
 </div>
-
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
 @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -22,9 +26,11 @@
     <div class="row col-md-4" style="margin-top:7%;">
         <div class="form-group">
 
-            <img id="output" class="img-rounded" alt="Ảnh" width="300" height="300" src="https://strawberrycstore.com/images/no-product-image.png" />
+            <img id="output" class="img-rounded" alt="" width="300" height="300" src="" />
             <p><label for="ufile" style="cursor: pointer">Chọn file ảnh</label></p>
             <input name="ImageFile" id="ufile" type="file" style="display: none" onchange="loadFile(event)" />
+            <input value="ds" name="Anh" hidden />
+            @Html.ValidationMessageFor(model => model.Anh, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -73,23 +79,7 @@
 
         </div>
 
-        <div class="form-group">
 
-            @Html.LabelFor(model => model.TrongLuong, htmlAttributes: new { @class = "control-label ", @style = "float:left;" })
-
-            @Html.EditorFor(model => model.TrongLuong, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TrongLuong, "", new { @class = "text-danger" })
-
-        </div>
-
-        <div class="form-group">
-
-            @Html.LabelFor(model => model.SoLuongTon, htmlAttributes: new { @class = "control-label ", @style = "float:left;" })
-
-            @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger" })
-
-        </div>
 
         <div class="form-group">
 
@@ -115,10 +105,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MaDM, "Tên danh mục", htmlAttributes: new { @class = "control-label ", @style = "float:left;" })
             <select class="form-control" name="MaDM">
-               @foreach (var item in dropList)
-               { 
-                <option value="@item.Key">@item.Value</option>
-               }
+                @foreach (var item in dropList)
+                {
+                    <option value="@item.Key">@item.Value</option>
+                }
             </select>
         </div>
 
@@ -149,10 +139,6 @@
     </script>
 
 }
-@if (ViewBag.Error != null)
-{
-    <br />
-    <div class="alert alert-danger">@ViewBag.Error</div>
-}
+
 
 

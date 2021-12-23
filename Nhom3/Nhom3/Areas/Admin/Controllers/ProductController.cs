@@ -17,7 +17,7 @@ namespace Nhom3.Areas.Admin.Controllers
         // GET: Admin/Product
         public ActionResult Index()
         {
-            var sanPhams = db.SanPhams.Include(s => s.DanhMuc);
+            var sanPhams = db.SanPhams;
             return View(sanPhams.ToList());
         }
 
@@ -59,23 +59,37 @@ namespace Nhom3.Areas.Admin.Controllers
         {
             try
             {
-
-                sanPham.Anh = "";
-                var f = Request.Files["ImageFile"];
-                if (f != null && f.ContentLength > 0)
+                var categories = db.DanhMucs.ToList();
+                IDictionary<int, String> dropList = new Dictionary<int, String>();
+                foreach (var item in categories)
                 {
-                    //Use Namespace called : System.IO
-                    string FileName = System.IO.Path.GetFileName(f.FileName);
-                    //Lấy tên file upload
-                    string UploadPath = Server.MapPath("~/wwwroot/Content/images/" + FileName);
-                    //Copy và lưu file vào server
-                    f.SaveAs(UploadPath);
-                    //Lưu tên file vào trường Image
-                    sanPham.Anh = FileName;
+                    dropList.Add(item.MaDM, item.TenDM);
                 }
-                db.SanPhams.Add(sanPham);
-                db.SaveChanges();
+                ViewBag.drop = dropList;
+                if (ModelState.IsValid)
+                {
+                    sanPham.Anh = "";
+                    var f = Request.Files["ImageFile"];
+                    if (f != null && f.ContentLength > 0)
+                    {
+                        //Use Namespace called : System.IO
+                        string FileName = System.IO.Path.GetFileName(f.FileName);
+                        //Lấy tên file upload
+                        string UploadPath = Server.MapPath("~/wwwroot/Content/images/" + FileName);
+                        //Copy và lưu file vào server
+                        f.SaveAs(UploadPath);
+                        //Lưu tên file vào trường Image
+                        sanPham.Anh = FileName;
+                    }
 
+                    db.SanPhams.Add(sanPham);
+                    db.SaveChanges();
+                }
+                else
+                {
+                
+                    return View(sanPham);
+                }
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -144,7 +158,8 @@ namespace Nhom3.Areas.Admin.Controllers
                         //Lưu tên file vào trường Image
                         db.Entry(sanPham).State = EntityState.Modified;
                         sanPham.Anh = FileName;
-                      
+                        db.SaveChanges();
+
                     }
                     db.Entry(sanPham).State = EntityState.Modified;
                     sanPham.TenSP = tenSP;
@@ -187,11 +202,18 @@ namespace Nhom3.Areas.Admin.Controllers
         }
 
         // POST: Admin/Product/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             SanPham sanPham = db.SanPhams.Find(id);
+            var cartDetails = db.ChiTietGioHangs.ToList();
+            var isInCart = cartDetails.Any(i => i.MaSP == id);
+            if (isInCart)
+            {
+                ViewBag.Error = "Không thể xóa sản phẩm do sản phẩm đang tồn tại trong giỏ hàng";
+                return View("Delete", sanPham);
+            }
             db.SanPhams.Remove(sanPham);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -21,6 +21,10 @@ namespace Nhom3.Core.Domains
 
         public int SoLuongMua { get; set; }
 
-        public decimal? Gia { get; set; }
+        public decimal Gia { get; set; }
+
+        public virtual GioHang GioHang { get; set; }
+
+        public virtual SanPham SanPham { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace Nhom3.Core.Domains
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GioHang()
         {
+            ChiTietGioHangs = new HashSet<ChiTietGioHang>();
             HoaDons = new HashSet<HoaDon>();
         }
 
@@ -21,6 +22,9 @@ namespace Nhom3.Core.Domains
         [Required]
         [StringLength(100)]
         public string TenTaiKhoan { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietGioHang> ChiTietGioHangs { get; set; }
 
         public virtual TaiKhoan TaiKhoan { get; set; }
 

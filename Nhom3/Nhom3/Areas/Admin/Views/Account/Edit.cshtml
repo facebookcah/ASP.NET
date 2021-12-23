@@ -28,6 +28,7 @@
                 @Html.ValidationMessageFor(model => model.TenTaiKhoan, "", new { @class = "text-danger" })
             </div>
         </div>
+        <input value="@Model.TenTaiKhoan" name="TenTaiKhoan" hidden/>
 
         <div class="form-group">
             <div class="col-md-12">

@@ -36,6 +36,11 @@ namespace Nhom3.Core.Domains
                 .IsUnicode(false);
 
             modelBuilder.Entity<GioHang>()
+                .HasMany(e => e.ChiTietGioHangs)
+                .WithRequired(e => e.GioHang)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<GioHang>()
                 .HasMany(e => e.HoaDons)
                 .WithRequired(e => e.GioHang)
                 .WillCascadeOnDelete(false);
@@ -51,6 +56,11 @@ namespace Nhom3.Core.Domains
             modelBuilder.Entity<SanPham>()
                 .Property(e => e.GiaKM)
                 .HasPrecision(18, 0);
+
+            modelBuilder.Entity<SanPham>()
+                .HasMany(e => e.ChiTietGioHangs)
+                .WithRequired(e => e.SanPham)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TaiKhoan>()
                 .Property(e => e.TenTaiKhoan)

@@ -24,7 +24,7 @@ namespace Nhom3.Core.ViewModels
             this.MaSP = pro.MaSP;
             this.TenSP = pro.TenSP;
             this.Gia = pro.Gia;
-            this.GiaKM = pro.GiaKM;
+            this.GiaKM = (decimal)pro.GiaKM;
             this.Anh = pro.Anh;
             this.SoLuong = quantity;
         }
