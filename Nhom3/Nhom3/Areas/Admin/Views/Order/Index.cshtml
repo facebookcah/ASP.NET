@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Nhom3.Model.CHITIETDONHANG>
+﻿@model IEnumerable<Nhom3.Core.Domains.HoaDon>
 
 
 @{
@@ -7,64 +7,62 @@
 }
 
 
-    <div class="row bg-primary">
-        <div class="col-lg-12">
-            <h1 class="page-header" style="text-align:left;">Thông tin đơn hàng</h1>
-        </div>
+<div class="row bg-primary">
+    <div class="col-lg-12">
+        <h1 class="page-header" style="text-align:left;">Thông tin đơn hàng</h1>
     </div>
-   
-        <div class="col-lg-12" style="margin-top:20px;">
-            <table class="table table-striped table-hover" >
+</div>
 
-                <thead>
-                    <tr>
-                        <th>Mã đơn hàng</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Hình thức thanh toán</th>
-                        <th>Ngày đặt</th>
-                        <th>Tình trạng</th>
-                        <th>Số lượng</th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
-                @foreach (var item in Model)
-                {
-                    <tbody>
-                        <tr>
-                            <td>@item.MADONHANG</td>
-                            <td>@item.SANPHAM.TENSANPHAM</td>
-                            <td>@item.DONHANG.HTTT.TENHTTT</td>
-                            <td>@item.DONHANG.NGAYDAT</td>
+<div class="col-lg-12" style="margin-top:20px;">
+    <table class="table table-striped table-hover">
 
-                           @if(item.DONHANG.TINHTRANG == 1)
-                           {
-                               <td>Đã thanh toán</td>
-                           }
-                           else
-                           {
-                               <td>Chưa thanh toán</td>
-                           }
-                            <td>@item.SOLUONG</td>
+        <thead>
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Tài khoản</th>
+                <th>Ngày đặt</th>
 
+                <th>Tình trạng</th>
+                <th>Phí ship</th>
+                <th>Ghi chú</th>
+                <th>Địa chỉ nhận hàng</th>
+
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.MaHoaDon</td>
+                    <td>@item.GioHang.TenTaiKhoan</td>
+                    <td>@item.NgayDat</td>
+                    <td>@item.TinhTrang</td>
+                    <td>@item.PhiShip</td>
+                    <td>@item.GhiChu</td>
+                    <td>@item.DcNhanHang</td>
+
+                  
 
 
-                            <td>
-                                <button class="btn  btn-sm btn-info">
-                                    <a href="@Url.Action("Details", "Order", new {id = item.MADONHANG})"  style="text-decoration: none; color: white;">Xem</a>
-                                </button>
-                                <button class="btn  btn-sm btn-danger">
-                                    <a href="@Url.Action("Delete", "Order", new { id = item.MADONHANG }) " style="text-decoration: none; color: white;">Xóa</a>
 
-                                </button>
 
-                            </td>
-                        </tr>
+                    <td>
+                        <button class="btn  btn-sm btn-info">
+                            <a href="@Url.Action("Details", "Order", new {id = item.MaHoaDon})" style="text-decoration: none; color: white;">Xem</a>
+                        </button>
+                        <button class="btn  btn-sm btn-danger">
+                            <a href="@Url.Action("Delete", "Order", new { id = item.MaHoaDon }) " style="text-decoration: none; color: white;">Xóa</a>
 
-                    </tbody>
-                }
+                        </button>
 
-            </table>
+                    </td>
+                </tr>
 
-        </div>
+            </tbody>
+        }
 
+    </table>
+
+</div>
 

@@ -12,13 +12,15 @@ namespace Core.Domains
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int MaSanPham { get; set; }
+        public int MaGioHang { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int MaGioHang { get; set; }
+        public int MaSP { get; set; }
 
-        public int? SoLuong { get; set; }
+        public int SoLuongMua { get; set; }
+
+        public decimal? Gia { get; set; }
     }
 }

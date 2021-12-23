@@ -6,120 +6,129 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Nhom3.Model;
+using Nhom3.Core.Domains;
+using Nhom3.Core.ViewModels;
 
 namespace Nhom3.Areas.Admin.Controllers
 {
     public class OrderController : Controller
     {
-        private FlowerDB db = new FlowerDB();
+        private FlowerContext db = new FlowerContext();
 
-        // GET: Admin/Cagetory
+        // GET: Admin/Order
         public ActionResult Index()
         {
-            var cHITIETDONHANGs = db.CHITIETDONHANGs.Include(c => c.DONHANG).Include(c => c.SANPHAM);
-            return View(cHITIETDONHANGs.ToList());
+            var hoaDons = db.HoaDons.Include(h => h.GioHang);
+            return View(hoaDons.ToList());
         }
 
-        // GET: Admin/Cagetory/Details/5
+        // GET: Admin/Order/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CHITIETDONHANG cHITIETDONHANG = db.CHITIETDONHANGs.SingleOrDefault(m => m.MADONHANG == id);
-            if (cHITIETDONHANG == null)
+            HoaDon hoaDon = db.HoaDons.Find(id);
+            if (hoaDon == null)
             {
                 return HttpNotFound();
             }
-            return View(cHITIETDONHANG);
+            var listProduct = db.ChiTietGioHangs.ToList().Where(i=>i.MaGioHang==hoaDon.MaGioHang).ToList();
+            List<OrderProduct> products = new List<OrderProduct>();
+            foreach (var pro in listProduct)
+            {
+                var product = db.SanPhams.Find(pro.MaSP);
+                if (product != null)
+                {
+                    var orderProduct = new OrderProduct(product, pro.SoLuongMua);
+                    products.Add(orderProduct);
+                }
+            }
+            OrderDetails orderDetails = new OrderDetails(hoaDon,products);
+            return View(orderDetails);
         }
 
-        // GET: Admin/Cagetory/Create
+        // GET: Admin/Order/Create
         public ActionResult Create()
         {
-            ViewBag.MADONHANG = new SelectList(db.DONHANGs, "MADONHANG", "MADONHANG");
-            ViewBag.MASANPHAM = new SelectList(db.SANPHAMs, "MASANPHAM", "TENSANPHAM");
+            ViewBag.MaGioHang = new SelectList(db.GioHangs, "MaGioHang", "TenTaiKhoan");
             return View();
         }
 
-        // POST: Admin/Cagetory/Create
+        // POST: Admin/Order/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MADONHANG,MASANPHAM,GHICHU,SOLUONG")] CHITIETDONHANG cHITIETDONHANG)
+        public ActionResult Create([Bind(Include = "MaHoaDon,NgayDat,TinhTrang,PhiShip,GhiChu,DcNhanHang,MaGioHang")] HoaDon hoaDon)
         {
             if (ModelState.IsValid)
             {
-                db.CHITIETDONHANGs.Add(cHITIETDONHANG);
+                db.HoaDons.Add(hoaDon);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MADONHANG = new SelectList(db.DONHANGs, "MADONHANG", "MADONHANG", cHITIETDONHANG.MADONHANG);
-            ViewBag.MASANPHAM = new SelectList(db.SANPHAMs, "MASANPHAM", "TENSANPHAM", cHITIETDONHANG.MASANPHAM);
-            return View(cHITIETDONHANG);
+            ViewBag.MaGioHang = new SelectList(db.GioHangs, "MaGioHang", "TenTaiKhoan", hoaDon.MaGioHang);
+            return View(hoaDon);
         }
 
-        // GET: Admin/Cagetory/Edit/5
+        // GET: Admin/Order/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CHITIETDONHANG cHITIETDONHANG = db.CHITIETDONHANGs.SingleOrDefault(m => m.MADONHANG == id);
-            if (cHITIETDONHANG == null)
+            HoaDon hoaDon = db.HoaDons.Find(id);
+            if (hoaDon == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MADONHANG = new SelectList(db.DONHANGs, "MADONHANG", "MADONHANG", cHITIETDONHANG.MADONHANG);
-            ViewBag.MASANPHAM = new SelectList(db.SANPHAMs, "MASANPHAM", "TENSANPHAM", cHITIETDONHANG.MASANPHAM);
-            return View(cHITIETDONHANG);
+            ViewBag.MaGioHang = new SelectList(db.GioHangs, "MaGioHang", "TenTaiKhoan", hoaDon.MaGioHang);
+            return View(hoaDon);
         }
 
-        // POST: Admin/Cagetory/Edit/5
+        // POST: Admin/Order/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MADONHANG,MASANPHAM,GHICHU,SOLUONG")] CHITIETDONHANG cHITIETDONHANG)
+        public ActionResult Edit([Bind(Include = "MaHoaDon,NgayDat,TinhTrang,PhiShip,GhiChu,DcNhanHang,MaGioHang")] HoaDon hoaDon)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cHITIETDONHANG).State = EntityState.Modified;
+                db.Entry(hoaDon).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MADONHANG = new SelectList(db.DONHANGs, "MADONHANG", "MADONHANG", cHITIETDONHANG.MADONHANG);
-            ViewBag.MASANPHAM = new SelectList(db.SANPHAMs, "MASANPHAM", "TENSANPHAM", cHITIETDONHANG.MASANPHAM);
-            return View(cHITIETDONHANG);
+            ViewBag.MaGioHang = new SelectList(db.GioHangs, "MaGioHang", "TenTaiKhoan", hoaDon.MaGioHang);
+            return View(hoaDon);
         }
 
-        // GET: Admin/Cagetory/Delete/5
+        // GET: Admin/Order/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CHITIETDONHANG cHITIETDONHANG = db.CHITIETDONHANGs.SingleOrDefault(m => m.MADONHANG == id);
-            if (cHITIETDONHANG == null)
+            HoaDon hoaDon = db.HoaDons.Find(id);
+            if (hoaDon == null)
             {
                 return HttpNotFound();
             }
-            return View(cHITIETDONHANG);
+            return View(hoaDon);
         }
 
-        // POST: Admin/Cagetory/Delete/5
+        // POST: Admin/Order/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CHITIETDONHANG cHITIETDONHANG = db.CHITIETDONHANGs.SingleOrDefault(m => m.MADONHANG == id);
-            db.CHITIETDONHANGs.Remove(cHITIETDONHANG);
+            HoaDon hoaDon = db.HoaDons.Find(id);
+            db.HoaDons.Remove(hoaDon);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

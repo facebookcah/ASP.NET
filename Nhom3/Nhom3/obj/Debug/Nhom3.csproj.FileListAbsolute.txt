@@ -322,3 +322,6 @@ C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3\bin\EntityFramework.dll
 C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3\bin\EntityFramework.SqlServer.dll
 C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3\bin\EntityFramework.xml
 C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3\bin\EntityFramework.SqlServer.xml
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3\bin\Nhom3.Core.dll
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3\bin\Nhom3.Core.pdb
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3\bin\Nhom3.Core.dll.config

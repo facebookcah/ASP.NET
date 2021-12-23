@@ -16,11 +16,11 @@ namespace Core.Domains
         }
 
         [Key]
-        public int MaDanhMuc { get; set; }
+        public int MaDM { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string TenDanhMuc { get; set; }
+        public string TenDM { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SanPham> SanPhams { get; set; }

@@ -10,15 +10,13 @@ namespace Core.Domains
     public partial class SanPham
     {
         [Key]
-        public int MaSanPham { get; set; }
+        public int MaSP { get; set; }
+
+        public int MaDM { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string TenSanPham { get; set; }
-
-        [Column(TypeName = "ntext")]
-        [Required]
-        public string MoTa { get; set; }
+        public string TenSP { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -32,14 +30,20 @@ namespace Core.Domains
 
         public int ChieuCao { get; set; }
 
-        public decimal GiaBan { get; set; }
+        public double TrongLuong { get; set; }
 
-        public decimal? GiaKM { get; set; }
+        public int SoLuongTon { get; set; }
 
-        [StringLength(100)]
+        public decimal Gia { get; set; }
+
+        public decimal GiaKM { get; set; }
+
+        [Column(TypeName = "ntext")]
+        public string MoTa { get; set; }
+
+        [Column(TypeName = "ntext")]
+        [Required]
         public string Anh { get; set; }
-
-        public int MaDanhMuc { get; set; }
 
         public virtual DanhMuc DanhMuc { get; set; }
     }

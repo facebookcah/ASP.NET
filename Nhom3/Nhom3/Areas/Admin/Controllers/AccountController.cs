@@ -6,41 +6,38 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Nhom3.Model;
+using Nhom3.Core.Domains;
 
 namespace Nhom3.Areas.Admin.Controllers
 {
     public class AccountController : Controller
     {
-        private FlowerDB db = new FlowerDB();
+        private FlowerContext db = new FlowerContext();
 
         // GET: Admin/Account
         public ActionResult Index()
         {
-            var tAIKHOANs = db.TAIKHOANs.Include(t => t.KHACHHANG).Include(t => t.QUYEN);
-            return View(tAIKHOANs.ToList());
+            return View(db.TaiKhoans.ToList());
         }
 
         // GET: Admin/Account/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TAIKHOAN tAIKHOAN = db.TAIKHOANs.Find(id);
-            if (tAIKHOAN == null)
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            if (taiKhoan == null)
             {
                 return HttpNotFound();
             }
-            return View(tAIKHOAN);
+            return View(taiKhoan);
         }
 
         // GET: Admin/Account/Create
         public ActionResult Create()
         {
-            ViewBag.MAKH = new SelectList(db.KHACHHANGs, "MAKH", "TENKH");
-            ViewBag.TENQUYEN = new SelectList(db.QUYENs, "TENQUYEN", "MOTA");
             return View();
         }
 
@@ -49,35 +46,31 @@ namespace Nhom3.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MATAIKHOAN,TENDANGNHAP,MATKHAU,TRANGTHAI,MAKH,TENQUYEN")] TAIKHOAN tAIKHOAN)
+        public ActionResult Create([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
         {
             if (ModelState.IsValid)
             {
-                db.TAIKHOANs.Add(tAIKHOAN);
+                db.TaiKhoans.Add(taiKhoan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MAKH = new SelectList(db.KHACHHANGs, "MAKH", "TENKH", tAIKHOAN.MAKH);
-            ViewBag.TENQUYEN = new SelectList(db.QUYENs, "TENQUYEN", "MOTA", tAIKHOAN.TENQUYEN);
-            return View(tAIKHOAN);
+            return View(taiKhoan);
         }
 
         // GET: Admin/Account/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TAIKHOAN tAIKHOAN = db.TAIKHOANs.Find(id);
-            if (tAIKHOAN == null)
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            if (taiKhoan == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MAKH = new SelectList(db.KHACHHANGs, "MAKH", "TENKH", tAIKHOAN.MAKH);
-            ViewBag.TENQUYEN = new SelectList(db.QUYENs, "TENQUYEN", "TENQUYEN", tAIKHOAN.TENQUYEN);
-            return View(tAIKHOAN);
+            return View(taiKhoan);
         }
 
         // POST: Admin/Account/Edit/5
@@ -85,41 +78,39 @@ namespace Nhom3.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MATAIKHOAN,TENDANGNHAP,MATKHAU,TRANGTHAI,MAKH,TENQUYEN")] TAIKHOAN tAIKHOAN)
+        public ActionResult Edit([Bind(Include = "TenTaiKhoan,MatKhau,Quyen,TinhTrang,TenKhachHang,Email,SoDienThoai,DiaChi")] TaiKhoan taiKhoan)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tAIKHOAN).State = EntityState.Modified;
+                db.Entry(taiKhoan).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MAKH = new SelectList(db.KHACHHANGs, "MAKH", "TENKH", tAIKHOAN.MAKH);
-            ViewBag.TENQUYEN = new SelectList(db.QUYENs, "TENQUYEN", "TENQUYEN", tAIKHOAN.TENQUYEN);
-            return View(tAIKHOAN);
+            return View(taiKhoan);
         }
 
         // GET: Admin/Account/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TAIKHOAN tAIKHOAN = db.TAIKHOANs.Find(id);
-            if (tAIKHOAN == null)
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            if (taiKhoan == null)
             {
                 return HttpNotFound();
             }
-            return View(tAIKHOAN);
+            return View(taiKhoan);
         }
 
         // POST: Admin/Account/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            TAIKHOAN tAIKHOAN = db.TAIKHOANs.Find(id);
-            db.TAIKHOANs.Remove(tAIKHOAN);
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            db.TaiKhoans.Remove(taiKhoan);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

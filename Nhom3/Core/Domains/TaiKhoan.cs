@@ -16,27 +16,30 @@ namespace Core.Domains
         }
 
         [Key]
-        public int MaTaiKHoan { get; set; }
-
-        [Required]
-        [StringLength(20)]
+        [StringLength(100)]
         public string TenTaiKhoan { get; set; }
 
         [Required]
-        [StringLength(25)]
+        [StringLength(100)]
         public string MatKhau { get; set; }
 
-        public bool TrangThai { get; set; }
+        public int Quyen { get; set; }
 
-        public int MaKH { get; set; }
+        public bool TinhTrang { get; set; }
 
-        public int MaQuyen { get; set; }
+        [StringLength(100)]
+        public string TenKhachHang { get; set; }
+
+        [StringLength(100)]
+        public string Email { get; set; }
+
+        [StringLength(12)]
+        public string SoDienThoai { get; set; }
+
+        [Column(TypeName = "ntext")]
+        public string DiaChi { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GioHang> GioHangs { get; set; }
-
-        public virtual KhachHang KhachHang { get; set; }
-
-        public virtual Quyen Quyen { get; set; }
     }
 }

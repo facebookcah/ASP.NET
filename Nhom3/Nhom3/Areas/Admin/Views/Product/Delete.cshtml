@@ -1,88 +1,121 @@
-﻿@model Nhom3.Model.SANPHAM
+﻿@model Nhom3.Core.Domains.SanPham
 
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <div class="col-lg-12 bg-primary">
-        <h1 class="page-header" style="text-align:left;">Xóa thông tin sản phẩm</h1>
-    </div>
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SanPham</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DanhMuc.TenDM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DanhMuc.TenDM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoaChinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoaChinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoaPhu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoaPhu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChieuNgang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChieuNgang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChieuCao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChieuCao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrongLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrongLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuongTon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongTon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anh)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
-
-
-@using (Html.BeginForm())
-{
-    <h3 style="color:red;">Bạn có chắc muốn xóa sản phẩm này?</h3>
-    <div class="col-md-12" style="margin-top:20px;">
-        <div class="form-group">
-            @Html.LabelFor(model => model.TENSANPHAM, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
-            @Html.EditorFor(model => model.TENSANPHAM, new { htmlAttributes = new { @class = "form-control", @style = "padding:10px;", disabled = "disabled" } })
-            @Html.ValidationMessageFor(model => model.TENSANPHAM, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.GIABAN, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
-            @Html.EditorFor(model => model.GIABAN, new { htmlAttributes = new { @class = "form-control", @style = "padding:10px;", disabled = "disabled" } })
-            @Html.ValidationMessageFor(model => model.GIABAN, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.GIAKM, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
-            @Html.EditorFor(model => model.GIAKM, new { htmlAttributes = new { @class = "form-control", @style = "padding:10px;", disabled = "disabled" } })
-            @Html.ValidationMessageFor(model => model.GIAKM, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.CHIEUCAO, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
-            @Html.EditorFor(model => model.CHIEUCAO, new { htmlAttributes = new { @class = "form-control", @style = "padding:10px;", disabled = "disabled" } })
-            @Html.ValidationMessageFor(model => model.CHIEUCAO, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.CHIEUNGANG, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
-            @Html.EditorFor(model => model.CHIEUNGANG, new { htmlAttributes = new { @class = "form-control", @style = "padding:10px;", disabled = "disabled" } })
-            @Html.ValidationMessageFor(model => model.CHIEUNGANG, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.HOACHINH, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
-            @Html.EditorFor(model => model.HOACHINH, new { htmlAttributes = new { @class = "form-control", @style = "padding:10px;", disabled = "disabled" } })
-            @Html.ValidationMessageFor(model => model.HOACHINH, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.HOAPHU, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
-            @Html.EditorFor(model => model.HOAPHU, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            @Html.ValidationMessageFor(model => model.HOAPHU, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="form-group">
-            @Html.LabelFor(model => model.MOTA, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left;" })
-            @Html.TextAreaFor(model => model.MOTA, new { @class = "form-control", rows = "5", disabled = "disabled" })
-            @Html.ValidationMessageFor(model => model.MOTA, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="col-md-12">
-        <input type="submit" value="Xóa" class="btn btn-sm btn-danger normal-text" />
-        @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-sm btn-primary normal-text" })
-    </div>
-
-}
-

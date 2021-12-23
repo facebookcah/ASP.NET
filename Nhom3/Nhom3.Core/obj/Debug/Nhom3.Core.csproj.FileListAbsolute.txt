@@ -1,0 +1,14 @@
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\bin\Debug\Nhom3.Core.dll.config
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\bin\Debug\Nhom3.Core.dll
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\bin\Debug\Nhom3.Core.pdb
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\bin\Debug\EntityFramework.dll
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\bin\Debug\EntityFramework.xml
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\obj\Debug\Nhom3.Core.csprojAssemblyReference.cache
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\obj\Debug\Nhom3.Core.csproj.CoreCompileInputs.cache
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\obj\Debug\Nhom3.Core.csproj.CopyComplete
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\obj\Debug\Nhom3.Core.dll
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\obj\Debug\Nhom3.Core.pdb
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\obj\Debug\Nhom3.Core.Migrations.g1.resources
+C:\Users\84835\Desktop\ASP.NET\Nhom3\Nhom3.Core\obj\Debug\Nhom3.Core.csproj.GenerateResource.cache

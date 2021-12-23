@@ -6,19 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Nhom3.Model;
+using Nhom3.Core.Domains;
 
 namespace Nhom3.Areas.Admin.Controllers
 {
     public class ProductController : Controller
     {
-        private FlowerDB db = new FlowerDB();
+        private FlowerContext db = new FlowerContext();
 
         // GET: Admin/Product
         public ActionResult Index()
         {
-            var sANPHAMs = db.SANPHAMs.Include(s => s.DANHMUCCON).Include(s => s.DANHMUCCON1);
-            return View(sANPHAMs.ToList());
+            var sanPhams = db.SanPhams.Include(s => s.DanhMuc);
+            return View(sanPhams.ToList());
         }
 
         // GET: Admin/Product/Details/5
@@ -28,19 +28,25 @@ namespace Nhom3.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SANPHAM sANPHAM = db.SANPHAMs.Find(id);
-            if (sANPHAM == null)
+            SanPham sanPham = db.SanPhams.Find(id);
+            if (sanPham == null)
             {
                 return HttpNotFound();
             }
-            return View(sANPHAM);
+            return View(sanPham);
         }
 
         // GET: Admin/Product/Create
         public ActionResult Create()
         {
-            ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON");
-            ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON");
+
+            var categories = db.DanhMucs.ToList();
+            IDictionary<int, String> dropList = new Dictionary<int, String>();
+            foreach (var item in categories)
+            {
+                dropList.Add(item.MaDM, item.TenDM);
+            }
+            ViewBag.drop = dropList;
             return View();
         }
 
@@ -49,18 +55,35 @@ namespace Nhom3.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MASANPHAM,TENSANPHAM,MOTA,HOACHINH,HOAPHU,CHIEUNGANG,CHIEUCAO,GIABAN,GIAKM,MADANHMUCCON")] SANPHAM sANPHAM)
+        public ActionResult Create(SanPham sanPham)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.SANPHAMs.Add(sANPHAM);
+
+                sanPham.Anh = "";
+                var f = Request.Files["ImageFile"];
+                if (f != null && f.ContentLength > 0)
+                {
+                    //Use Namespace called : System.IO
+                    string FileName = System.IO.Path.GetFileName(f.FileName);
+                    //Lấy tên file upload
+                    string UploadPath = Server.MapPath("~/wwwroot/Content/images/" + FileName);
+                    //Copy và lưu file vào server
+                    f.SaveAs(UploadPath);
+                    //Lưu tên file vào trường Image
+                    sanPham.Anh = FileName;
+                }
+                db.SanPhams.Add(sanPham);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu! ";
 
-            ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
-            ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
-            return View(sANPHAM);
+                return View(sanPham);
+            }
         }
 
         // GET: Admin/Product/Edit/5
@@ -70,15 +93,19 @@ namespace Nhom3.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SANPHAM sANPHAM = db.SANPHAMs.Find(id);
-            if (sANPHAM == null)
+            SanPham sanPham = db.SanPhams.Find(id);
+            if (sanPham == null)
             {
                 return HttpNotFound();
             }
-            
-            ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
-            ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
-            return View(sANPHAM);
+            var categories = db.DanhMucs.ToList();
+            IDictionary<int, String> dropList = new Dictionary<int, String>();
+            foreach (var item in categories)
+            {
+                dropList.Add(item.MaDM, item.TenDM);
+            }
+            ViewBag.drop = dropList;
+            return View(sanPham);
         }
 
         // POST: Admin/Product/Edit/5
@@ -86,29 +113,62 @@ namespace Nhom3.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MASANPHAM,TENSANPHAM,MOTA,HOACHINH,HOAPHU,CHIEUNGANG,CHIEUCAO,GIABAN,GIAKM,MADANHMUCCON")] SANPHAM sANPHAM)
+        public ActionResult Edit(SanPham sanPham)
         {
+            string tenSP = sanPham.TenSP;
+            var hoaChinh = sanPham.HoaChinh;
+            var hoaPhu = sanPham.HoaPhu;
+            var ChieuNgang = sanPham.ChieuNgang;
+            var ChieuCao = sanPham.ChieuCao;
+            var TrongLuong = sanPham.TrongLuong;
+            var SoLuongTon = sanPham.SoLuongTon;
+            var Gia = sanPham.Gia;
+            var GiaKM = sanPham.GiaKM;
+            var MaDM = sanPham.MaDM;
+            var MoTa = sanPham.MoTa;
+
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Entry(sANPHAM).State = EntityState.Modified;
+
+                    var f = Request.Files["ImageFile"];
+                    if (f != null && f.ContentLength > 0)
+                    {
+                        //Use Namespace called : System.IO
+                        string FileName = System.IO.Path.GetFileName(f.FileName);
+                        //Lấy tên file upload
+                        string UploadPath = Server.MapPath("~/wwwroot/Content/images/" + FileName);
+                        //Copy và lưu file vào server
+                        f.SaveAs(UploadPath);
+                        //Lưu tên file vào trường Image
+                        db.Entry(sanPham).State = EntityState.Modified;
+                        sanPham.Anh = FileName;
+                      
+                    }
+                    db.Entry(sanPham).State = EntityState.Modified;
+                    sanPham.TenSP = tenSP;
+                    sanPham.HoaChinh = hoaChinh;
+                    sanPham.HoaPhu = hoaPhu;
+                    sanPham.ChieuNgang = ChieuNgang;
+                    sanPham.ChieuCao = ChieuCao;
+                    sanPham.TrongLuong = TrongLuong;
+                    sanPham.SoLuongTon = SoLuongTon;
+                    sanPham.Gia = Gia;
+                    sanPham.GiaKM = GiaKM;
+                    sanPham.MaDM = MaDM;
+                    sanPham.MoTa = MoTa;
+
                     db.SaveChanges();
-                    
                 }
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
-                ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
-                return View(sANPHAM);
-            }
+                ViewBag.Error = "Lỗi nhập dữ liệu! ";
 
-            
-          //  ViewBag.MADANHMUCCON = new SelectList(db.DANHMUCCONs, "MADANHMUCCON", "TENDANHMUCCON", sANPHAM.MADANHMUCCON);
-            
-            
+                return View(sanPham);
+            }
         }
 
         // GET: Admin/Product/Delete/5
@@ -118,12 +178,12 @@ namespace Nhom3.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SANPHAM sANPHAM = db.SANPHAMs.Find(id);
-            if (sANPHAM == null)
+            SanPham sanPham = db.SanPhams.Find(id);
+            if (sanPham == null)
             {
                 return HttpNotFound();
             }
-            return View(sANPHAM);
+            return View(sanPham);
         }
 
         // POST: Admin/Product/Delete/5
@@ -131,19 +191,10 @@ namespace Nhom3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SANPHAM sANPHAM = db.SANPHAMs.Find(id);
-            try
-            {
-                db.SANPHAMs.Remove(sANPHAM);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = "Không thể xóa sản phẩm này, Mã lỗi: " + ex.Message;
-                return View(sANPHAM);
-            }
-
+            SanPham sanPham = db.SanPhams.Find(id);
+            db.SanPhams.Remove(sanPham);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

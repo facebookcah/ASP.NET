@@ -9,11 +9,22 @@ namespace Core.Domains
     [Table("GioHang")]
     public partial class GioHang
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public GioHang()
+        {
+            HoaDons = new HashSet<HoaDon>();
+        }
+
         [Key]
         public int MaGioHang { get; set; }
 
-        public int? MaTaiKHoan { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string TenTaiKhoan { get; set; }
 
         public virtual TaiKhoan TaiKhoan { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HoaDon> HoaDons { get; set; }
     }
 }

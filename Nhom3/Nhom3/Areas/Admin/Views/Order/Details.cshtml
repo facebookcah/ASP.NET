@@ -1,4 +1,4 @@
-﻿@model Nhom3.Model.CHITIETDONHANG
+﻿@model Nhom3.Core.ViewModels.OrderDetails
 
 @{
     ViewBag.Title = "Details";
@@ -13,54 +13,113 @@
 <div class="row" style="margin-top:20px;">
     <div class="col-md-3">
         <div class="form-group">
-            @Html.LabelFor(model => model.MADONHANG, "Mã đơn hàng", htmlAttributes: new { @class = "bmd-label-floating" })
-            @Html.EditorFor(model => model.MADONHANG, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            @Html.LabelFor(model => model.MaHoaDon, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left" })
+            @Html.EditorFor(model => model.MaHoaDon, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
-            @Html.LabelFor(model => model.SANPHAM.TENSANPHAM, htmlAttributes: new { @class = "bmd-label-floating" })
-            @Html.EditorFor(model => model.SANPHAM.TENSANPHAM, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            @Html.LabelFor(model => model.taiKhoan, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left" })
+            @Html.EditorFor(model => model.taiKhoan, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
-            @Html.LabelFor(model => model.DONHANG.HTTT.TENHTTT, "Hình thức thanh toán", htmlAttributes: new { @class = "bmd-label-floating" })
-            @Html.EditorFor(model => model.DONHANG.HTTT.TENHTTT, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            @Html.LabelFor(model => model.NgayDat, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left" })
+            @Html.EditorFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
     </div>
 
     <div class="col-md-3">
         <div class="form-group">
-            @Html.LabelFor(model => model.DONHANG.NGAYDAT, "Ngày đặt", htmlAttributes: new { @class = "bmd-label-floating" })
-            @Html.EditorFor(model => model.DONHANG.NGAYDAT, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            @Html.LabelFor(model => model.TinhTrang, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left" })
+            @Html.EditorFor(model => model.TinhTrang, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhiShip, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left" })
+            @Html.EditorFor(model => model.PhiShip, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.GhiChu, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left" })
+            @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.DcNhanHang, htmlAttributes: new { @class = "bmd-label-floating", @style = "float:left" })
+            @Html.EditorFor(model => model.DcNhanHang, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
     </div>
 </div>
+
+
 
 <div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
 
-            @Html.LabelFor(model => model.DONHANG.TINHTRANG, "Tình trạng", htmlAttributes: new { @class = "bmd-label-floating" })
-            @if (Model.DONHANG.TINHTRANG == 1)
-            {
-                @Html.EditorFor(model => model.DONHANG.TINHTRANG, "Đã thanh toán", new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
-            }
-            else
-            {
-                @Html.EditorFor(model => model.DONHANG.TINHTRANG, "Chưa thanh toán", new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
-            }
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr style="background-color:aqua; text-align:center;color:black;">
+                <th colspan="7" style="text-align: center;font-size: 30px;">Danh sách mặt hàng</th>
+            </tr>
+            <tr>
+                <th>Mã sản phẩm</th>
+                <th>Ảnh</th>
+                <th>Tên sản phẩm</th>
 
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.SOLUONG, "Số lượng đặt", htmlAttributes: new { @class = "bmd-label-floating" })
-            @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control", disabled = "@disabled" } })
-        </div>
-    </div>
+                <th>Giá bán</th>
+                <th>Giá khuyến mãi</th>
+
+                <th>Số lượng mua</th>
+                <th>Thành tiền</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @{decimal sumOfTotal = 0; }
+            @foreach (var item in Model.sanPhams)
+            {
+
+                <tr>
+                    <td>@item.MaSP</td>
+                    @{
+                        //Lấy  đường  dẫn  file  ảnh
+                        string ImagePath = "~/wwwroot/Content/images/" + item.Anh;
+                    }
+
+                    <td><img src="@Url.Content(ImagePath)" width="100" height="100" class="img-thumbnail" /></td>
+                    <td>@item.TenSP</td>
+                    <td>@item.Gia</td>
+                    <td>@item.GiaKM</td>
+                    <td>@item.SoLuong</td>
+                    @{ decimal total = 0;
+                        if (item.GiaKM == 0)
+                        {
+                            total = item.Gia * item.SoLuong;
+                            sumOfTotal += total;
+
+                        }
+                        else
+                        {
+                            total = item.GiaKM * item.SoLuong;
+                            sumOfTotal += total;
+                        }
+                    }
+                    <td>@total</td>
+
+                </tr>
+            }
+            <tr style="text-align: center;background-color:aqua;"><td colspan="7"><b style="color:black; ">TỔNG : @sumOfTotal</b></td></tr>
+        </tbody>
+    </table>
 </div>
+
 
 <div class="row mt-4">
     <div class="col-md-12">
@@ -68,4 +127,3 @@
     </div>
 
 </div>
-
